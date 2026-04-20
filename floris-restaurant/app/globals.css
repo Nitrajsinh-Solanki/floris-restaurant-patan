@@ -1,55 +1,66 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
-
+/* ========================================
+   ROOT VARIABLES
+======================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Base */
+  --background: #fdf8f0;
+  --foreground: #1a0f08;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Brand Colors */
+  --burgundy: #7d1a2b;
+  --burgundy-dark: #5c1220;
+  --burgundy-light: #9e2336;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --gold: #c9952c;
+  --gold-light: #e4b554;
+  --gold-pale: #f5e6c4;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+  --cream: #fdf8f0;
+  --cream-dark: #f5ede0;
 
+  --dark: #1a0f08;
+  --dark-mid: #2e1a10;
 
+  --text-muted: #7a6555;
+  --white: #ffffff;
 
-:root {
-  --burgundy: #7D1A2B;
-  --burgundy-dark: #5C1220;
-  --burgundy-light: #9E2336;
-  --gold: #C9952C;
-  --gold-light: #E4B554;
-  --gold-pale: #F5E6C4;
-  --cream: #FDF8F0;
-  --cream-dark: #F5EDE0;
-  --dark: #1A0F08;
-  --dark-mid: #2E1A10;
-  --text-muted: #7A6555;
-  --white: #FFFFFF;
-  --shadow-gold: 0 8px 32px rgba(201,149,44,0.18);
-  --shadow-dark: 0 16px 48px rgba(26,15,8,0.22);
+  /* Effects */
+  --shadow-gold: 0 8px 32px rgba(201, 149, 44, 0.18);
+  --shadow-dark: 0 16px 48px rgba(26, 15, 8, 0.22);
+
   --radius: 4px;
   --radius-lg: 12px;
+
   --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-*, *::before, *::after {
+/* ========================================
+   TAILWIND THEME TOKENS
+======================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* ========================================
+   DARK MODE
+======================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #120d09;
+    --foreground: #f8f1e6;
+  }
+}
+
+/* ========================================
+   RESET
+======================================== */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -61,20 +72,38 @@ html {
 }
 
 body {
+  background: var(--background);
+  color: var(--foreground);
   font-family: 'DM Sans', sans-serif;
-  background-color: var(--cream);
-  color: var(--dark);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4 {
+/* ========================================
+   TYPOGRAPHY
+======================================== */
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Playfair Display', serif;
   line-height: 1.2;
 }
 
-h5, h6 {
+h5,
+h6 {
   font-family: 'Cormorant Garamond', serif;
+}
+
+p,
+span,
+li,
+a,
+button,
+input,
+textarea,
+select {
+  font-family: 'DM Sans', sans-serif;
 }
 
 a {
@@ -85,31 +114,34 @@ a {
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 button {
   cursor: pointer;
   border: none;
   outline: none;
-  font-family: 'DM Sans', sans-serif;
+  background: transparent;
 }
 
-/* ===== UTILITIES ===== */
+/* ========================================
+   LAYOUT UTILITIES
+======================================== */
 .container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
+  margin-inline: auto;
+  padding-inline: 24px;
 }
 
 .section-label {
-  font-family: 'DM Sans', sans-serif;
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--gold);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
-  display: block;
 }
 
 .section-title {
@@ -125,11 +157,11 @@ button {
 }
 
 .section-subtitle {
+  max-width: 560px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.2rem;
-  color: var(--text-muted);
-  max-width: 560px;
   line-height: 1.7;
+  color: var(--text-muted);
 }
 
 .divider {
@@ -150,23 +182,29 @@ button {
   height: 8px;
   background: var(--burgundy);
   transform: rotate(45deg);
-  flex-shrink: 0;
 }
 
-/* ===== BUTTONS ===== */
-.btn-primary {
+/* ========================================
+   BUTTONS
+======================================== */
+.btn-primary,
+.btn-gold,
+.btn-outline {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: 14px 28px;
-  background: var(--burgundy);
-  color: var(--white);
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-weight: 700;
   border-radius: var(--radius);
   transition: var(--transition);
   white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--burgundy);
+  color: var(--white);
 }
 
 .btn-primary:hover {
@@ -176,18 +214,8 @@ button {
 }
 
 .btn-gold {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
   background: var(--gold);
   color: var(--dark);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  border-radius: var(--radius);
-  transition: var(--transition);
-  white-space: nowrap;
 }
 
 .btn-gold:hover {
@@ -197,70 +225,24 @@ button {
 }
 
 .btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 28px;
-  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
   color: var(--white);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  border: 1.5px solid rgba(255,255,255,0.6);
-  border-radius: var(--radius);
-  transition: var(--transition);
-  white-space: nowrap;
 }
 
 .btn-outline:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--white);
 }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,149,44,0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(201,149,44,0); }
-}
-
-.animate-fade-in { animation: fadeIn 0.6s ease forwards; }
-.animate-fade-up { animation: fadeInUp 0.7s ease forwards; }
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--cream-dark); }
-::-webkit-scrollbar-thumb { background: var(--burgundy); border-radius: 3px; }
-
-/* ===== FORM ELEMENTS ===== */
-input, textarea, select {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+/* ========================================
+   FORM ELEMENTS
+======================================== */
+input,
+textarea,
+select {
   width: 100%;
   padding: 12px 16px;
+  font-size: 14px;
   border: 1.5px solid rgba(125, 26, 43, 0.2);
   border-radius: var(--radius);
   background: var(--white);
@@ -269,17 +251,90 @@ input, textarea, select {
   outline: none;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   border-color: var(--burgundy);
   box-shadow: 0 0 0 3px rgba(125, 26, 43, 0.08);
 }
 
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: var(--text-muted);
 }
 
-/* ===== RESPONSIVE ===== */
+/* ========================================
+   ANIMATIONS
+======================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--burgundy);
+  border-radius: 3px;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
 @media (max-width: 768px) {
-  .container { padding: 0 16px; }
-  .section-title { font-size: 1.8rem; }
+  .container {
+    padding-inline: 16px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn-primary,
+  .btn-gold,
+  .btn-outline {
+    width: 100%;
+  }
 }
